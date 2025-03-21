@@ -1,0 +1,3 @@
+object=codec.serializer.ObjectSerializer
+json=codec.serializer.JsonSerializer
+kryo=codec.serializer.KryoSerializer
