@@ -4,6 +4,7 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import lombok.AllArgsConstructor;
+import registry.ServiceRegistry;
 import remoting.transport.netty.codec.MyDecoder;
 import remoting.transport.netty.codec.MyEncoder;
 import serializer.KryoSerializer;

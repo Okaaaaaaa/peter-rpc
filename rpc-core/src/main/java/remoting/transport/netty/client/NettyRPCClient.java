@@ -7,11 +7,11 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.AttributeKey;
+import registry.ServiceDiscovery;
+import registry.zk.ZkServiceDiscoveryImpl;
 import remoting.transport.RPCClient;
 import remoting.dto.RPCRequest;
-import register.ZkServiceRegister;
 import remoting.dto.RPCResponse;
-import register.ServiceRegister;
 
 import java.net.InetSocketAddress;
 
@@ -25,10 +25,11 @@ public class NettyRPCClient implements RPCClient {
     private String host;
     private int port;
 
-    private ServiceRegister serviceRegister;
+    private ServiceDiscovery serviceDiscovery;
 
     public NettyRPCClient(){
-        this.serviceRegister = new ZkServiceRegister();
+//        this.serviceRegister = new ZkServiceRegister();
+        this.serviceDiscovery = new ZkServiceDiscoveryImpl();
     }
 
     // 单例模式
@@ -44,7 +45,7 @@ public class NettyRPCClient implements RPCClient {
     public RPCResponse sendRequest(RPCRequest request) {
         try{
             String serviceName = request.getInterfaceName();
-            InetSocketAddress inetSocketAddress = serviceRegister.serviceDiscovery(request);
+            InetSocketAddress inetSocketAddress = serviceDiscovery.serviceDiscovery(request);
             this.host = inetSocketAddress.getHostName();
             this.port = inetSocketAddress.getPort();
             ChannelFuture channelFuture = bootStrap.connect(host,port).sync();

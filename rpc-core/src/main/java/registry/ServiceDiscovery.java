@@ -1,10 +1,9 @@
-package register;
+package registry;
 
 import remoting.dto.RPCRequest;
 
 import java.net.InetSocketAddress;
 
-public interface ServiceRegister {
-    void register(String serviceName, InetSocketAddress inetSocketAddress);
+public interface ServiceDiscovery {
     InetSocketAddress serviceDiscovery(RPCRequest request);
 }

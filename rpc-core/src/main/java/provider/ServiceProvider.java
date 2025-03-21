@@ -1,7 +1,7 @@
 package provider;
 
-import register.ZkServiceRegister;
-import register.ServiceRegister;
+import registry.ServiceRegistry;
+import registry.zk.ZkServiceRegistryImpl;
 
 import java.net.InetSocketAddress;
 import java.util.HashMap;
@@ -11,7 +11,8 @@ public class ServiceProvider {
     private Map<String, Object> interfaceProvider;
 
     // zk服务注册中心
-    private ServiceRegister serviceRegister;
+    private ServiceRegistry serviceRegistry;
+
     private String host;
     private int port;
 
@@ -19,7 +20,8 @@ public class ServiceProvider {
         this.host = host;
         this.port = port;
         this.interfaceProvider = new HashMap<>();
-        this.serviceRegister = new ZkServiceRegister();
+        this.serviceRegistry = new ZkServiceRegistryImpl();
+//        this.serviceRegister = new ZkServiceRegister();
     }
 
     // 服务注册（给定一个服务对象，可以通过反射获取服务名）
@@ -31,7 +33,7 @@ public class ServiceProvider {
             // 本机映射表
             interfaceProvider.put(clazz.getName(), service);
             // 在注册中心注册服务
-            serviceRegister.register(clazz.getName(),new InetSocketAddress(host,port));
+            serviceRegistry.register(clazz.getName(),new InetSocketAddress(host,port));
             System.out.printf("接口名：%s，服务名：%s \n",clazz.getName(),service.getClass().getName());
         }
     }

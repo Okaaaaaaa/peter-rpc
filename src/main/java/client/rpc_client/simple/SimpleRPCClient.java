@@ -2,10 +2,10 @@ package client.rpc_client.simple;
 
 import lombok.AllArgsConstructor;
 import client.rpc_client.RPCClient;
-import register.ZkServiceRegister;
+import registry.ZkServiceRegister;
 import common.RPCRequest;
 import common.RPCResponse;
-import register.ServiceRegister;
+import registry.ServiceRegister;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

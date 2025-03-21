@@ -1,11 +1,11 @@
 package remoting.transport.socket;
 
 import lombok.AllArgsConstructor;
+import registry.ServiceDiscovery;
+import registry.zk.ZkServiceDiscoveryImpl;
 import remoting.transport.RPCClient;
-import register.ZkServiceRegister;
 import remoting.dto.RPCRequest;
 import remoting.dto.RPCResponse;
-import register.ServiceRegister;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,16 +17,16 @@ import java.net.Socket;
 public class SocketRPCClient implements RPCClient {
     private String host;
     private int port;
-    private ServiceRegister serviceRegister;
+    private ServiceDiscovery serviceDiscovery;
 
     public SocketRPCClient(){
-        this.serviceRegister = new ZkServiceRegister();
+        this.serviceDiscovery = new ZkServiceDiscoveryImpl();
     }
     @Override
     public RPCResponse sendRequest(RPCRequest request) {
         // 当客户端要调用某个服务时，request中指定了服务名，用这个服务名去zk中查找需要进行通信的服务端的host、port
         String serviceName = request.getInterfaceName();
-        InetSocketAddress inetSocketAddress = serviceRegister.serviceDiscovery(request);
+        InetSocketAddress inetSocketAddress = serviceDiscovery.serviceDiscovery(request);
         host = inetSocketAddress.getHostName();
         port = inetSocketAddress.getPort();
 

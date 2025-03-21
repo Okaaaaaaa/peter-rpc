@@ -3,6 +3,7 @@ package remoting.transport.netty.server;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.AllArgsConstructor;
+import registry.ServiceRegistry;
 import remoting.dto.RPCRequest;
 import remoting.dto.RPCResponse;
 import provider.ServiceProvider;

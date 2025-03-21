@@ -1,4 +1,4 @@
-package register;
+package registry;
 
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;

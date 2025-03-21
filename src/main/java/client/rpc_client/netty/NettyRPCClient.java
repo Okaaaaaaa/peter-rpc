@@ -9,9 +9,9 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.AttributeKey;
 import client.rpc_client.RPCClient;
 import common.RPCRequest;
-import register.ZkServiceRegister;
+import registry.ZkServiceRegister;
 import common.RPCResponse;
-import register.ServiceRegister;
+import registry.ServiceRegister;
 
 import java.net.InetSocketAddress;
 

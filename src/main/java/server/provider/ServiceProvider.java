@@ -1,7 +1,7 @@
 package server.provider;
 
-import register.ZkServiceRegister;
-import register.ServiceRegister;
+import registry.ZkServiceRegister;
+import registry.ServiceRegister;
 
 import java.net.InetSocketAddress;
 import java.util.HashMap;
