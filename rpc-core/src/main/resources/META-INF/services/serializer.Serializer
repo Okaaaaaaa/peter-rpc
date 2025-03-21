@@ -1,0 +1,3 @@
+object=serializer.ObjectSerializer
+json=serializer.JsonSerializer
+kryo=serializer.KryoSerializer
