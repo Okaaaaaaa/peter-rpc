@@ -1,0 +1,3 @@
+consistent_hash=com.peter.loadbalance.impl.ConsistentHashLoadBalance
+random=com.peter.loadbalance.impl.RandomLoadBalance
+round=com.peter.loadbalance.impl.RoundLoadBalance

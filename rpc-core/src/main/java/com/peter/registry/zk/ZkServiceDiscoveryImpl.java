@@ -1,7 +1,8 @@
 package com.peter.registry.zk;
 
+import com.peter.enums.LoadBalanceTypeEnum;
+import com.peter.extension.ExtensionLoader;
 import com.peter.loadbalance.LoadBalance;
-import com.peter.loadbalance.impl.ConsistentHashLoadBalance;
 import com.peter.registry.zk.util.CuratorUtils;
 import org.apache.curator.framework.CuratorFramework;
 import com.peter.registry.ServiceDiscovery;
@@ -14,7 +15,8 @@ public class ZkServiceDiscoveryImpl implements ServiceDiscovery {
     private final LoadBalance loadbalance;
 
     public ZkServiceDiscoveryImpl(){
-        this.loadbalance = new ConsistentHashLoadBalance();
+        this.loadbalance = ExtensionLoader.getExtensionLoader(LoadBalance.class)
+                .getExtensionInstance(LoadBalanceTypeEnum.CONSISTENT_HASH.getName());
     }
 
     @Override
