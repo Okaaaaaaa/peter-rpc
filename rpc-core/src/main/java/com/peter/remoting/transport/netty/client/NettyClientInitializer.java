@@ -14,7 +14,7 @@ public class NettyClientInitializer extends ChannelInitializer<SocketChannel> {
         ChannelPipeline pipeline = channel.pipeline();
         // 使用自定义的编码器、解码器
         pipeline.addLast(new MyDecoder());
-        pipeline.addLast(new MyEncoder(new KryoSerializer()));
+        pipeline.addLast(new MyEncoder());
         pipeline.addLast(new NettyClientHandler());
     }
 }

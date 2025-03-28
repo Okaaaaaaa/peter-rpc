@@ -29,10 +29,8 @@ public class MyDecoder extends ByteToMessageDecoder {
 
         short serializerType = in.readShort();
         String name = SerializerTypeEnum.getName(serializerType);
-        System.out.println("In Decoder, Serializer name:"+name);
         Serializer serializer = ExtensionLoader.getExtensionLoader(Serializer.class).getExtensionInstance(name);
         // 获取对应的序列化器
-//        Serializer serializer = Serializer.getSerializerByCode(serializerType);
         if(serializer == null){
             throw new RuntimeException("不存在对应的序列化器");
         }else{

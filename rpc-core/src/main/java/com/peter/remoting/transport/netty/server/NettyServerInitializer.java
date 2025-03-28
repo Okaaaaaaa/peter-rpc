@@ -19,7 +19,7 @@ public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
         ChannelPipeline pipeline = channel.pipeline();
         // 加入自定义编码器、解码器
         pipeline.addLast(new MyDecoder());
-        pipeline.addLast(new MyEncoder(new KryoSerializer()));
+        pipeline.addLast(new MyEncoder());
         pipeline.addLast(new NettyRPCServerHandler(serviceProvider));
     }
 }
