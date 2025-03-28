@@ -11,9 +11,6 @@ import user.service.UserService;
 
 public class Consumer2 {
     public static void main(String[] args) {
-//        ExtensionLoader<Serializer> loader = ExtensionLoader.getExtensionLoader(Serializer.class);
-//        Serializer serializer = loader.getExtension("json");
-//        System.out.println("SPI加载的serializer:"+serializer.getClass().getName());
         RPCClient RPCClient = new NettyRPCClient();
         ClientProxy proxy = new ClientProxy(RPCClient);
         // 获取不同接口的代理类

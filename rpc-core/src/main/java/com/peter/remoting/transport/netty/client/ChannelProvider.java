@@ -16,10 +16,11 @@ public class ChannelProvider {
         String key = inetSocketAddress.toString();
         if(channelMap.containsKey(key)){
             Channel channel = channelMap.get(key);
-            // 若channel为空或已关闭，则移除
             if(channel != null && channel.isActive()){
                 return channel;
-            }else {
+            }
+            // 若channel为空或已关闭，则移除
+            else {
                 channelMap.remove(key);
             }
         }
