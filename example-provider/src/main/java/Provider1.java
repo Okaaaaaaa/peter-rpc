@@ -1,7 +1,7 @@
 import blog.service.BlogService;
-import remoting.transport.netty.server.NettyRPCServer;
-import remoting.transport.RPCServer;
-import provider.ServiceProvider;
+import com.peter.remoting.transport.netty.server.NettyRPCServer;
+import com.peter.remoting.transport.RPCServer;
+import com.peter.provider.ServiceProvider;
 import service.impl.UserServiceImpl;
 import service.impl.BlogServiceImpl;
 import user.service.UserService;

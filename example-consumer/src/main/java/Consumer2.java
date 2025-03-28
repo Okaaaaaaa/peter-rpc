@@ -1,10 +1,10 @@
 import blog.entity.Blog;
 import blog.service.BlogService;
-import proxy.ClientProxy;
+import com.peter.proxy.ClientProxy;
 import org.apache.dubbo.common.extension.ExtensionLoader;
-import remoting.transport.RPCClient;
-import remoting.transport.netty.client.NettyRPCClient;
-import serializer.Serializer;
+import com.peter.remoting.transport.RPCClient;
+import com.peter.remoting.transport.netty.client.NettyRPCClient;
+import com.peter.serializer.Serializer;
 import user.entity.User;
 import user.service.UserService;
 
@@ -16,11 +16,6 @@ public class Consumer2 {
 //        System.out.println("SPI加载的serializer:"+serializer.getClass().getName());
         RPCClient RPCClient = new NettyRPCClient();
         ClientProxy proxy = new ClientProxy(RPCClient);
-
-        ExtensionLoader<Serializer> loader = ExtensionLoader.getExtensionLoader(Serializer.class);
-        Serializer serializer = loader.getExtension("json");
-        System.out.println("序列化器名称"+serializer.getClass().getName());
-
         // 获取不同接口的代理类
         UserService userService = proxy.getProxy(UserService.class);
         BlogService blogService = proxy.getProxy(BlogService.class);

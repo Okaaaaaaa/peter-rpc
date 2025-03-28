@@ -1,8 +1,8 @@
-package fault.retry;
+package com.peter.fault.retry;
 
 import com.github.rholder.retry.*;
 import lombok.extern.slf4j.Slf4j;
-import remoting.dto.RPCResponse;
+import com.peter.remoting.dto.RPCResponse;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * 固定时间间隔 - 重试策略
  */
 @Slf4j
-public class FixedIntervalRetryStrategy implements RetryStrategy{
+public class FixedIntervalRetryStrategy implements RetryStrategy {
 
     /**
      * 重试

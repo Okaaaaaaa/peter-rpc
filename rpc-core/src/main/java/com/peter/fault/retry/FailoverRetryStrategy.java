@@ -1,10 +1,10 @@
-package fault.retry;
+package com.peter.fault.retry;
 
-import remoting.dto.RPCResponse;
+import com.peter.remoting.dto.RPCResponse;
 
 import java.util.concurrent.Callable;
 
-public class FailoverRetryStrategy implements RetryStrategy{
+public class FailoverRetryStrategy implements RetryStrategy {
     /**
      * 重试
      *
