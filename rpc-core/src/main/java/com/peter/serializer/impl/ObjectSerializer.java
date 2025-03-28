@@ -1,4 +1,6 @@
-package com.peter.serializer;
+package com.peter.serializer.impl;
+
+import com.peter.serializer.Serializer;
 
 import java.io.*;
 

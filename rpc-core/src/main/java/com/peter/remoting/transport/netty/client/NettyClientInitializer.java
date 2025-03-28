@@ -5,7 +5,6 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import com.peter.remoting.transport.netty.codec.MyDecoder;
 import com.peter.remoting.transport.netty.codec.MyEncoder;
-import com.peter.serializer.KryoSerializer;
 
 public class NettyClientInitializer extends ChannelInitializer<SocketChannel> {
 

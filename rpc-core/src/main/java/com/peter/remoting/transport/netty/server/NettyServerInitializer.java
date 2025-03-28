@@ -7,7 +7,6 @@ import io.netty.channel.socket.SocketChannel;
 import lombok.AllArgsConstructor;
 import com.peter.remoting.transport.netty.codec.MyDecoder;
 import com.peter.remoting.transport.netty.codec.MyEncoder;
-import com.peter.serializer.KryoSerializer;
 
 
 @AllArgsConstructor

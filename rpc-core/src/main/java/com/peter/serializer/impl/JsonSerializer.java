@@ -1,9 +1,10 @@
-package com.peter.serializer;
+package com.peter.serializer.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.peter.remoting.dto.RPCRequest;
 import com.peter.remoting.dto.RPCResponse;
+import com.peter.serializer.Serializer;
 
 import java.util.Arrays;
 

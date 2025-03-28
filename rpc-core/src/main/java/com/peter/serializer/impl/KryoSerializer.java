@@ -1,4 +1,4 @@
-package com.peter.serializer;
+package com.peter.serializer.impl;
 
 import blog.entity.Blog;
 import com.esotericsoftware.kryo.Kryo;
@@ -6,13 +6,14 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.peter.remoting.dto.RPCRequest;
 import com.peter.remoting.dto.RPCResponse;
+import com.peter.serializer.Serializer;
 import user.entity.User;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class KryoSerializer implements Serializer{
+public class KryoSerializer implements Serializer {
 
     private final ThreadLocal<Kryo> kryoThreadLocal = ThreadLocal.withInitial(()->{
         Kryo kryo = new Kryo();

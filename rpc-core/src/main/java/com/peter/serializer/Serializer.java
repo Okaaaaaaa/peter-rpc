@@ -2,6 +2,9 @@ package com.peter.serializer;
 
 
 import com.peter.extension.SPI;
+import com.peter.serializer.impl.JsonSerializer;
+import com.peter.serializer.impl.KryoSerializer;
+import com.peter.serializer.impl.ObjectSerializer;
 
 /**
  * @author Peter

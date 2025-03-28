@@ -1,3 +1,3 @@
-object=com.peter.serializer.ObjectSerializer
-json=com.peter.serializer.JsonSerializer
-kryo=com.peter.serializer.KryoSerializer
+object=com.peter.serializer.impl.ObjectSerializer
+json=com.peter.serializer.impl.JsonSerializer
+kryo=com.peter.serializer.impl.KryoSerializer
