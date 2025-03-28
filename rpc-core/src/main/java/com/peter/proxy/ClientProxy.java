@@ -10,6 +10,7 @@ import com.peter.fault.retry.RetryStrategyFactory;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.UUID;
 
 @AllArgsConstructor
 public class ClientProxy implements InvocationHandler {
@@ -25,14 +26,14 @@ public class ClientProxy implements InvocationHandler {
         System.out.println("触发了"+method.getName()+"的invoke方法");
         // 构建request
         RPCRequest request = RPCRequest.builder()
+                .requestId(UUID.randomUUID().toString())
                 .interfaceName(method.getDeclaringClass().getName())
                 .methodName(method.getName())
                 .params(args)
                 .paramsTypes(method.getParameterTypes())
                 .build();
 
-        // 传输数据
-        // 引入重试机制
+        // 传输数据，引入重试机制
         try{
             RPCResponse response = retryStrategy.doRetry(() -> client.sendRequest(request));
             return response.getData();
