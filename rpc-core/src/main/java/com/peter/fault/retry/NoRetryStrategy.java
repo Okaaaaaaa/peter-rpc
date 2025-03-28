@@ -1,7 +1,7 @@
-package fault.retry;
+package com.peter.fault.retry;
 
 import lombok.extern.slf4j.Slf4j;
-import remoting.dto.RPCResponse;
+import com.peter.remoting.dto.RPCResponse;
 
 import java.util.concurrent.Callable;
 
@@ -9,7 +9,7 @@ import java.util.concurrent.Callable;
  * 不重试 - 重试策略
  */
 @Slf4j
-public class NoRetryStrategy implements RetryStrategy{
+public class NoRetryStrategy implements RetryStrategy {
 
     /**
      * 重试
@@ -20,7 +20,6 @@ public class NoRetryStrategy implements RetryStrategy{
      */
     @Override
     public RPCResponse doRetry(Callable<RPCResponse> callable) throws Exception {
-        System.out.println("发生故障，不重试");
         return callable.call();
     }
 }
