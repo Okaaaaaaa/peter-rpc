@@ -12,6 +12,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RPCResponse implements Serializable {
+
+    private String requestId;
     // 调用状态码
     private int code;
     // 调用状态描述
@@ -22,7 +24,7 @@ public class RPCResponse implements Serializable {
     private Object data;
 
     // 成功
-    public static RPCResponse success(Object data){
+    public static RPCResponse success(Object data, String requestId){
         return RPCResponse.builder().code(200).dataType(data.getClass()).data(data).build();
     }
     // 失败
