@@ -25,7 +25,12 @@ public class RPCResponse implements Serializable {
 
     // 成功
     public static RPCResponse success(Object data, String requestId){
-        return RPCResponse.builder().code(200).dataType(data.getClass()).data(data).build();
+        return RPCResponse.builder()
+                .requestId(requestId)
+                .code(200)
+                .dataType(data.getClass())
+                .data(data)
+                .build();
     }
     // 失败
     public static RPCResponse fail(){
