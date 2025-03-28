@@ -1,0 +1,3 @@
+object=com.peter.serializer.ObjectSerializer
+json=com.peter.serializer.JsonSerializer
+kryo=com.peter.serializer.KryoSerializer
