@@ -1,5 +1,6 @@
 package com.peter.provider;
 
+import com.peter.config.CustomizedShutdownHook;
 import com.peter.registry.ServiceRegistry;
 import com.peter.registry.zk.ZkServiceRegistryImpl;
 
@@ -21,7 +22,8 @@ public class ServiceProvider {
         this.port = port;
         this.interfaceProvider = new HashMap<>();
         this.serviceRegistry = new ZkServiceRegistryImpl();
-//        this.serviceRegister = new ZkServiceRegister();
+        // JVM关闭hook：注销zk节点
+        CustomizedShutdownHook.getCustomizedShutDownHook().unregisterFromZk(new InetSocketAddress(host, port));
     }
 
     // 服务注册（给定一个服务对象，可以通过反射获取服务名）
@@ -34,7 +36,6 @@ public class ServiceProvider {
             interfaceProvider.put(clazz.getName(), service);
             // 在注册中心注册服务
             serviceRegistry.register(clazz.getName(),new InetSocketAddress(host,port));
-            System.out.printf("接口名：%s，服务名：%s \n",clazz.getName(),service.getClass().getName());
         }
     }
 

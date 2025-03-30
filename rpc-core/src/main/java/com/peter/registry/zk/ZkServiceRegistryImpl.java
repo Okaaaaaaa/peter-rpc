@@ -1,6 +1,6 @@
 package com.peter.registry.zk;
 
-import com.peter.registry.zk.util.CuratorUtils;
+import com.peter.registry.zk.util.CuratorUtil;
 import com.peter.registry.ServiceRegistry;
 
 import java.net.InetSocketAddress;
@@ -13,6 +13,6 @@ public class ZkServiceRegistryImpl implements ServiceRegistry {
      */
     @Override
     public void register(String serviceName, InetSocketAddress inetSocketAddress) {
-        CuratorUtils.createNode(CuratorUtils.getZkClient(), serviceName, inetSocketAddress);
+        CuratorUtil.registerProvider(CuratorUtil.getZkClient(), serviceName, inetSocketAddress);
     }
 }
