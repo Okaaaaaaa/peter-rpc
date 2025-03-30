@@ -55,7 +55,7 @@ public class NettyRPCClient implements RPCClient {
                     protected void initChannel(SocketChannel channel) throws Exception {
                         ChannelPipeline pipeline = channel.pipeline();
                         // 写空闲超过15s，关闭连接
-//                        pipeline.addLast(new IdleStateHandler(0, 15, 0, TimeUnit.SECONDS));
+                        pipeline.addLast(new IdleStateHandler(0, 15, 0, TimeUnit.SECONDS));
                         // 使用自定义的编码器、解码器
                         pipeline.addLast(new MyDecoder());
                         pipeline.addLast(new MyEncoder());

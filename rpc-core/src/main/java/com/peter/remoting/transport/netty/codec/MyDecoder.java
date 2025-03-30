@@ -33,8 +33,6 @@ public class MyDecoder extends ByteToMessageDecoder {
         // 获取对应的序列化器
         if(serializer == null){
             throw new RuntimeException("不存在对应的序列化器");
-        }else{
-            System.out.println("当前序列化器："+serializer.getClass().getName());
         }
 
         int length = in.readInt();

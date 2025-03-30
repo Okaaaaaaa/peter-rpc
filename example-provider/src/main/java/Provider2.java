@@ -8,6 +8,8 @@ import user.service.UserService;
 
 public class Provider2 {
     public static void main(String[] args) {
+        String host = "127.0.0.1";
+        int port = 8900;
         UserService userService = new UserServiceImpl();
         BlogService blogService = new BlogServiceImpl();
 
@@ -17,13 +19,13 @@ public class Provider2 {
 //        serviceProvider.put("version2.service.BlogService", blogService);
 
         // 自动注册
-        ServiceProvider serviceProvider = new ServiceProvider("127.0.0.1",8900);
+        ServiceProvider serviceProvider = new ServiceProvider(host, port);
         serviceProvider.register(userService);
         serviceProvider.register(blogService);
 
 //        RPCServer RPCServer = new SocketRPCServer(serviceProvider);
 //        RPCServer RPCServer = new ThreadPoolRPCServer(serviceProvider);
         RPCServer RPCServer = new NettyRPCServer(serviceProvider);
-        RPCServer.start(8900);
+        RPCServer.start(port);
     }
 }
