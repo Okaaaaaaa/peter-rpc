@@ -4,12 +4,15 @@ import com.peter.provider.ServiceProvider;
 import com.peter.remoting.transport.RPCServer;
 import com.peter.remoting.transport.netty.codec.MyDecoder;
 import com.peter.remoting.transport.netty.codec.MyEncoder;
+import com.peter.utils.RuntimeUtil;
+import com.peter.utils.concurrent.threadpool.ThreadPoolFactoryUtil;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
+import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import lombok.AllArgsConstructor;
 
 import java.util.concurrent.TimeUnit;
@@ -22,6 +25,10 @@ public class NettyRPCServer implements RPCServer {
     public void start(int port) {
         NioEventLoopGroup bossGroup = new NioEventLoopGroup();
         NioEventLoopGroup workGroup = new NioEventLoopGroup();
+        DefaultEventExecutorGroup serviceHandlerGroup = new DefaultEventExecutorGroup(
+                RuntimeUtil.cpus()*2,
+                ThreadPoolFactoryUtil.createThreadFactory("service-handler-group", false)
+        );
         System.out.println("Netty服务端启动，端口为:"+port);
 
         try {
@@ -39,7 +46,8 @@ public class NettyRPCServer implements RPCServer {
                             // 加入自定义编码器、解码器
                             pipeline.addLast(new MyDecoder());
                             pipeline.addLast(new MyEncoder());
-                            pipeline.addLast(new NettyRPCServerHandler(serviceProvider));
+                            // 业务逻辑处理线程池
+                            pipeline.addLast(serviceHandlerGroup, new NettyRPCServerHandler(serviceProvider));
                         }
                     });
 
