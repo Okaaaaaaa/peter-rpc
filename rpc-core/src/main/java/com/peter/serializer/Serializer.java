@@ -26,16 +26,4 @@ public interface Serializer {
 
     int getType();
 
-    static Serializer getSerializerByCode(int code){
-        switch (code){
-            case 1:
-                return new ObjectSerializer();
-            case 2:
-                return new JsonSerializer();
-            case 3:
-                return new KryoSerializer();
-            default:
-                return null;
-        }
-    }
 }

@@ -17,4 +17,10 @@ public class CustomizedShutdownHook {
             CuratorUtil.unregisterProvider(CuratorUtil.getZkClient(), inetSocketAddress);
         }));
     }
+
+    public void serverCloseChannel(){
+        Runtime.getRuntime().addShutdownHook(new Thread(()->{
+
+        }));
+    }
 }

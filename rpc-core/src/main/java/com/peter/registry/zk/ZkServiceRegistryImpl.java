@@ -1,5 +1,6 @@
 package com.peter.registry.zk;
 
+import com.peter.config.CustomizedShutdownHook;
 import com.peter.registry.zk.util.CuratorUtil;
 import com.peter.registry.ServiceRegistry;
 
@@ -13,6 +14,6 @@ public class ZkServiceRegistryImpl implements ServiceRegistry {
      */
     @Override
     public void register(String serviceName, InetSocketAddress inetSocketAddress) {
-        CuratorUtil.registerProvider(CuratorUtil.getZkClient(), serviceName, inetSocketAddress);
+        CuratorUtil.registerProviderByServiceName(CuratorUtil.getZkClient(), serviceName, inetSocketAddress);
     }
 }

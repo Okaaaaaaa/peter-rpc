@@ -11,12 +11,12 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class ConsistentHashLoadBalance implements LoadBalance {
 
-    // 存储每个服务名对应的“环”，即ConsistentHashSelector
+    // 存储每个service对应的hash ring
     private final ConcurrentHashMap<String, ConsistentHashSelector> selectors = new ConcurrentHashMap<>();
 
     @Override
     public String balance(List<String> addressList, RPCRequest request) {
-        // 不直接使用addressList的hashcode：避免因
+        // 不直接使用addressList的hashcode：内容改变 -> hashcode改变
         int identityHashCode = new TreeSet<>(addressList).hashCode();
         String serviceName = request.getInterfaceName();
 
@@ -69,7 +69,7 @@ public class ConsistentHashLoadBalance implements LoadBalance {
         }
 
         /**
-         * 对输入的字符串key进行md5 Hash计算，并返回对应的Hash值
+         * 对输入的字符串key进行md5 Hash计算，并返回对应的Hash值，16byte
          */
         static byte[] md5(String key){
             // 假设传入的key是"hello world"
@@ -97,6 +97,7 @@ public class ConsistentHashLoadBalance implements LoadBalance {
 
         // 给定一个hashCode，在环上往后找第一个节点并返回节点地址
         public String selectForKey(long hashCode){
+            //  tailMap：返回一个子映射，包含所有 ≥ hashCode 的键值对（即哈希环上顺时针方向的节点）
             Map.Entry<Long, String> entry = virtualInvokers.tailMap(hashCode, true).firstEntry();
             if(entry == null){
                 entry = virtualInvokers.firstEntry();

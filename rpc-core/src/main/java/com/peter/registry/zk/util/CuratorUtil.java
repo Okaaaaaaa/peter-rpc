@@ -116,7 +116,7 @@ public final class CuratorUtil {
      * 【provider】
      * 在zkServer中加入serviceName（永久节点）、addr（临时节点）
      */
-    public static void registerProvider(CuratorFramework zkClient, String serviceName, InetSocketAddress inetSocketAddress){
+    public static void registerProviderByServiceName(CuratorFramework zkClient, String serviceName, InetSocketAddress inetSocketAddress){
         // /my-rpc/userService
         String path = "/" + serviceName;
 
@@ -141,7 +141,7 @@ public final class CuratorUtil {
 
     public static void unregisterProvider(CuratorFramework zkClient, InetSocketAddress inetSocketAddress){
         System.out.println("===================================================");
-        System.out.println("provider下线，注销所有相关节点");
+        System.out.println("provider："+inetSocketAddress+" 下线，注销所有相关节点");
         REGISTERED_PATH_SET.parallelStream().forEach(p -> {
             // 删除当前provider注册的所有节点
             try{
@@ -149,7 +149,7 @@ public final class CuratorUtil {
                     zkClient.delete().forPath(p);
                 }
             }catch (Exception e){
-                System.out.println("provider"+inetSocketAddress.toString()+"注销节点失败");
+                System.out.println("provider"+ inetSocketAddress +"注销节点失败");
             }
         });
     }

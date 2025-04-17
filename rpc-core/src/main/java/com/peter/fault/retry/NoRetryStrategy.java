@@ -20,6 +20,7 @@ public class NoRetryStrategy implements RetryStrategy {
      */
     @Override
     public RPCResponse doRetry(Callable<RPCResponse> callable) throws Exception {
+        System.out.println("不重试");
         return callable.call();
     }
 }

@@ -28,4 +28,8 @@ public enum SerializerTypeEnum {
         }
         return null;
     }
+
+    public static int getCode(SerializerTypeEnum serializerTypeEnum){
+        return serializerTypeEnum.getCode();
+    }
 }

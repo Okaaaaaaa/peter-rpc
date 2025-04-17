@@ -7,6 +7,7 @@ import com.peter.registry.zk.ZkServiceRegistryImpl;
 import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ServiceProvider {
     private Map<String, Object> interfaceProvider;
@@ -20,7 +21,7 @@ public class ServiceProvider {
     public ServiceProvider(String host, int port){
         this.host = host;
         this.port = port;
-        this.interfaceProvider = new HashMap<>();
+        this.interfaceProvider = new ConcurrentHashMap<>();
         this.serviceRegistry = new ZkServiceRegistryImpl();
         // JVM关闭hook：注销zk节点
         CustomizedShutdownHook.getCustomizedShutDownHook().unregisterFromZk(new InetSocketAddress(host, port));
